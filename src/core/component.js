@@ -12,7 +12,7 @@ export class Component {
     }
 
     show(){
-        this.$el.classList.remove('hede');
+        this.$el.classList.remove('hide');
     }
 
 }

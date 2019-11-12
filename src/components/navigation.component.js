@@ -4,10 +4,15 @@ export class NavigationComponent extends Component
 {
     constructor(id){
         super(id)
+        this.tabs = [];
     }
 
     init() {
         this.$el.addEventListener('click', tabClickHandler.bind(this));
+    }
+
+    registerTabs(tabs) {
+        this.tabs = tabs;        
     }
 }
 
@@ -18,5 +23,24 @@ function tabClickHandler(event) {
             tab.classList.remove('active');
         });
         event.target.classList.add('active');
+
+        //const activeTab = this.tabs.find(t => t.name === event.target.dataset.name);
+        
+        const activeTab = this.tabs.find(function(t){
+            return t.name === event.target.dataset.name;
+        })
+
+        
+
+        //this.tabs.forEach(t => t.component.hide());  
+        this.tabs.forEach(function(t) {          
+            t.component.hide();
+        });
+        activeTab.component.show();       
     }
 }
+
+
+
+
+
